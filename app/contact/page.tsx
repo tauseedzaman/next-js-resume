@@ -25,17 +25,17 @@ export default function Contact() {
 
     const submitForm = (e) => {
         // We don't want the page to refresh
-        e.preventDefault()
+        // e.preventDefault()
 
-        const formURL = e.target.action
-        const data = new FormData()
+        // const formURL = e.target.action
+        // const data = new FormData()
 
-        // Turn our formData state into data we can use with a form submission
-        Object.entries(formData).forEach(([key, value]) => {
-            data.append(key, value);
-        })
+        // // Turn our formData state into data we can use with a form submission
+        // Object.entries(formData).forEach(([key, value]) => {
+        //     data.append(key, value);
+        // })
 
-        console.log(data)
+        // console.log()
 
 
     }
@@ -56,7 +56,6 @@ export default function Contact() {
                             <label htmlFor="Name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Name</label>
                             <input type="Name" id="Name" onChange={handleInput} name="name" value={formData.name} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Your Name" required />
                         </div>
-
 
                         <div className="mb-6">
                             <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
