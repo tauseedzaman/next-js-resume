@@ -4,6 +4,10 @@ const dotenv = require('dotenv');
 
 // Load environment variables from .env file
 dotenv.config();
-const nextConfig = {}
+const nextConfig = {
+    images: {
+        domains: ['portfolio.tauseedzaman.com'],
+    },
+}
 
 module.exports = nextConfig
