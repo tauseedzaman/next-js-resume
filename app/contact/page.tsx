@@ -13,7 +13,7 @@ export default function Contact() {
     });
 
     // handler
-    const handleInput = (e) => {
+    const handleInput = (e: any) => {
         const fieldName = e.target.name;
         const fieldValue = e.target.value;
 
@@ -23,22 +23,34 @@ export default function Contact() {
         }));
     }
 
-    const submitForm = (e) => {
-        // We don't want the page to refresh
-        // e.preventDefault()
+    const submitForm = (e: any) => {
+        e.preventDefault();
 
-        // const formURL = e.target.action
-        // const data = new FormData()
+        const formURL = e.target.action;
 
-        // // Turn our formData state into data we can use with a form submission
-        // Object.entries(formData).forEach(([key, value]) => {
-        //     data.append(key, value);
-        // })
+        fetch(formURL, {
+            method: "POST",
+            body: JSON.stringify({
+                name: formData.name,
+                email: formData.email,
+                subject: formData.subject,
+                message: formData.message
+            }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            .then(res => res.json())
+            .then(responseData => {
+                console.log(responseData);
+                // Handle the response data as needed
+            })
+            .catch(error => {
+                console.log(error);
+                // Handle the error appropriately
+            });
+    };
 
-        // console.log()
-
-
-    }
 
     return (
         <div className="bg-[url('https://images.unsplash.com/photo-1564865878688-9a244444042a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80')] bg-repeat bg-left-top ">
@@ -51,7 +63,7 @@ export default function Contact() {
 
                     <h1 className="flex items-center justify-center text-lg font-bold text-blue-200">Contact Me</h1>
 
-                    <form method="post" onSubmit={submitForm} action="/api/pages/contact">
+                    <form method="post" onSubmit={submitForm} action="/api/contact">
                         <div className="mb-6">
                             <label htmlFor="Name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Name</label>
                             <input type="Name" id="Name" onChange={handleInput} name="name" value={formData.name} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Your Name" required />

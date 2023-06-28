@@ -2,6 +2,7 @@ const {
     MongoClient,
     ServerApiVersion
 } = require('mongodb');
+
 const db_username = process.env.MONGO_USERNAME;
 const db_url = process.env.MONGO_URL;
 // Accessing DB_URL
