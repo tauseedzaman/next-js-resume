@@ -42,8 +42,17 @@ export default function Contact() {
         })
             .then(res => res.json())
             .then(responseData => {
-                console.log(responseData);
-                // Handle the response data as needed
+                // show success message
+                alert(responseData.message);
+                // clear form
+                setFormData({
+                    name: "",
+                    email: "",
+                    subject: "",
+                    message: ""
+                });
+                // reset form
+                e.target.reset();
             })
             .catch(error => {
                 console.log(error);

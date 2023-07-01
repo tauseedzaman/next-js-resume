@@ -2,14 +2,23 @@ import {
     createRouter
 } from 'next-connect';
 import Contact from '../../models/contact.js'
-import connectDb from '../../connection/config.js'
+import clientPromise from '../../connection/config.js'
 
 const router = createRouter();
 
-router.get((req, res) => {
-    res.send({
-        "hello": "world"
-    })
+router.get(async(req, res) => {
+    Contact.find()
+        .then((contacts) => {
+            console.log('Retrieved contacts:', contacts);
+            res.json({
+                status: 200,
+                data: contacts
+            });
+        })
+        .catch((error) => {
+            console.error('Error retrieving contacts:', error);
+        });
+
 })
 
 router.post(async(req, res) => {
@@ -28,8 +37,7 @@ router.post(async(req, res) => {
                 message: 'Please fill the required fields.'
             });
         } else {
-            console.log('yes its working')
-                // create object of user model
+            // create object of user model
             const contact = new Contact({
                 name,
                 email,
